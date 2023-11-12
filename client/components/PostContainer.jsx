@@ -1,7 +1,5 @@
 // Contains all the posts that describe the character and a button that creates a form to add a new post
 
-import { useState } from "react";
-
 export default function PostContainer({ posts }) {
     // Make the list of posts sortable as well
     return (

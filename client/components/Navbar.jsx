@@ -1,28 +1,36 @@
-// Navbar with a customizable title and list of page links
-
+import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom'
 import '../styles/navbar.css'
+import useAuth from '../hooks/useAuth'
 
-export function Navbar() {
-    
+export default function Navbar() {
+    const { auth } = useAuth()
+
     return (
-        <nav className="nav">
-            <a href="/dashboard" className="site-name">Writing Tool</a>
+        <>
+            <nav className="nav">
+                <Link to="/" className="site-name">Writing Tool</Link>
 
-            <ul>
-                <CustomLink to={"/charcreator"} name={"Creator"} />
-                <CustomLink to={"/settings"} name={"Settings"} />
-                <CustomLink to={"/login"} name={"Login"} />
-            </ul>
-        </nav>
+                <ul>
+                    <CustomLink to={"/char"} name={"Character"} />
+                    <CustomLink to={"/settings"} name={"Settings"} />
+                    {auth?.accessToken
+                        && <CustomLink to={'/logout'} name={'Logout'} />
+                    }
+
+                </ul>
+            </nav>
+            <Outlet />
+        </>
     )
 }
 
-function CustomLink({to, name}) {
-    const isActive = false // Update after setting up react router
+function CustomLink({ to, name }) {
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
         <li className={isActive ? "active" : ""}>
-            <a href={to}>{name}</a>
+            <Link to={to}>{name}</Link>
         </li>
     )
 }

@@ -1,6 +1,6 @@
 // Contains a profile picture, an image file chooser, and editable labels for basic character info
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react"
 
 export default function Profile() {
     const imgRef = useRef()
@@ -32,7 +32,7 @@ export default function Profile() {
             <section id="basic-info">
                 <label htmlFor="img-upload">
                     Upload character image:
-                    <input type="file" name="img-upload" onChange={e => loadCharImg(e)} accept="image/*" />
+                    <input type="file" id="img-upload" name="img-upload" onChange={e => loadCharImg(e)} accept="image/*" />
                 </label>
                 <br />
                 <InfoLabel property={"Name"} />
@@ -47,7 +47,7 @@ export default function Profile() {
 function InfoLabel({ property }) {
     const [answer, setAnswer] = useState(() => {
         const savedAnswer = localStorage.getItem(property)
-        return (savedAnswer == '') ? "Edit" : savedAnswer
+        return (savedAnswer === 'null') ? "Edit" : savedAnswer
     })
 
     useEffect(() => {
@@ -55,7 +55,7 @@ function InfoLabel({ property }) {
     }, [answer])
 
     return (
-        <label>
+        <label className="info-label">
             {property}:
             <input type="text" name="info-field" id="info-field" defaultValue={answer} onBlur={e => setAnswer(e.target.value)} />
         </label>

@@ -7,18 +7,14 @@
     margin-bottom: 0.5rem;
 }
 
-.offscreen {
-    display: none;
-}
-
-#login-container {
+#signup-container {
     margin: auto;
     margin-top: 5%;
     width: 35%;
     text-align: center;
 }
 
-#login-form {
+#signup-form {
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -33,11 +29,36 @@
     height: 2rem;
 }
 
-.login-label {
+.signup-label {
     align-self: flex-start;
 }
 
-.login-button {
+input.valid {
+    border-color: green;
+}
+
+input.invalid {
+    border-color: red;
+}
+
+.instructions {
+    width: 75%;
+    align-self: center;
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #6b6b6b;
+    color: #fff;
+    text-align: left;
+    padding: 0.25rem 0.5rem;
+    bottom: -10px;
+    list-style-position: inside;
+}
+
+.offscreen {
+    display: none;
+}
+
+#signup-button {
     width: fit-content;
     height: 2rem;
     align-self: center;
@@ -51,9 +72,14 @@
     transition: background-color .25s;
 }
 
-.login-button:hover {
+#signup-button:hover {
     cursor: pointer;
     background-color: rgb(0, 125, 0);
+}
+
+#signup-button.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .page-link {

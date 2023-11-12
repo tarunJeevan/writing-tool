@@ -1,8 +1,3 @@
-* {
-    box-sizing: border-box;
-    font-family: Georgia;
-}
-
 .nav {
     background-color: lightgray;
     display: flex;
