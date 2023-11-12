@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react'
 import '../styles/dashboard.css'
 import { useNavigate } from 'react-router-dom'
 import usePopulateDocs from '../hooks/usePopulateDocs'
-import AddNewManuscript from '../components/AddNewManuscript'
+import useCreateProject from '../hooks/useCreateProject'
+import AddManuscriptBtn from '../components/AddManuscriptBtn'
 
 export default function Dashboard() {
     const populateDocs = usePopulateDocs()
+
     const [docs, setDocs] = useState([])
 
-    // TODO: Try useEffect to set docs state when Promise is resolved
     useEffect(() => {
         (async () => {
             const result = await populateDocs()
-            // console.log(result)
             setDocs(result)
         })()
     }, [])
@@ -29,7 +29,7 @@ export default function Dashboard() {
         <section id="dashboard-container">
             <h2>
                 My Projects
-                <AddNewManuscript docs={docs} setDocs={setDocs} />
+                <AddManuscriptBtn docs={docs} setDocs={setDocs} />
             </h2>
 
             {/* Contains all projects */}
