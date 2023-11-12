@@ -1,37 +1,42 @@
-import { useEffect, useState } from "react";
-import './styles/charCreator.css'
-import AddNewPost from "./components/AddNewPost";
-import PostContainer from "./components/PostContainer";
-import Profile from "./components/Profile";
-import { Navbar } from "./components/Navbar";
-// import Login from "./components/Login";
-// import Settings from "./components/Settings"
-// import Dashboard from "./components/Dashboard";
+import { Routes, Route } from 'react-router-dom'
+import RequireAuth from './components/RequireAuth'
+import PersistLogin from './components/PersistLogin'
+import Navbar from './components/Navbar'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Settings from './pages/Settings'
+import Dashboard from './pages/Dashboard'
+import CharCreator from './pages/CharCreator'
+import Missing from './pages/Missing'
+import TextEditor from './pages/TextEditor'
+import Logout from './components/Logout'
 
 export default function App() {
-    const [posts, setPosts] = useState(() => {
-        const savedPosts = localStorage.getItem("POSTS") // Get any saved posts from local storage        
-        if (savedPosts == null) return [] // If there are no saved posts, set an empty array as the default value
-
-        return JSON.parse(savedPosts) // If there are saved posts, set it as the default value
-    })
-
-    // Save character posts each time one is added
-    useEffect(() => {
-        localStorage.setItem("POSTS", JSON.stringify(posts))
-    }, [posts])
 
     return (
         <>
-            <Navbar />
-            <main>
-                <Profile />
+            {/* <Navbar /> */}
+            <Routes>
+                {/* Public routes */}
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
 
-                <article id="char-info">
-                    <AddNewPost posts={posts} setPosts={setPosts} />
-                    <PostContainer posts={posts} />
-                </article>
-            </main>
+                {/* Protected routes */}
+                <Route element={<PersistLogin />}>
+                    <Route element={<RequireAuth />}>
+                        <Route element={<Navbar />}>
+                            <Route path='/logout' element={<Logout />} />
+                            <Route path='/' element={<Dashboard />} />
+                            <Route path='/settings' element={<Settings />} />
+                            <Route path='/char' element={<CharCreator />} />
+                            <Route path='/documents/:id' element={<TextEditor />} />
+                        </Route>
+                    </Route>
+                </Route>
+
+                {/* Error route for wrong URLs */}
+                <Route path='*' element={<Missing />} />
+            </Routes>
         </>
     )
 }

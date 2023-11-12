@@ -1,17 +1,19 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 
 export default function AddNewPost({ posts, setPosts }) {
     const [open, setOpen] = useState(false)
 
+    // References
+    const titleRef = useRef()
+    const descRef = useRef()
+
     const addNewInfoBlock = () => {
         // Create pop up dialog box to take post info
-        const postTitle = document.getElementById("post-title").value
-        const postDesc = document.getElementById("post-desc").value
         const newPost = {
-            title: postTitle,
-            description: postDesc
+            title: titleRef.current.value,
+            description: descRef.current.value
         }
 
         setPosts([...posts, newPost])
@@ -26,13 +28,13 @@ export default function AddNewPost({ posts, setPosts }) {
                     <div>
                         <label htmlFor="post-title">Title</label>
                         <br/>
-                        <input type="text" name="post-title" id="post-title" placeholder="Enter title here..." />
+                        <input type="text" name="post-title" id="post-title" ref={titleRef} placeholder="Enter title here..." />
                     </div>
 
                     <div>
                         <label htmlFor="post-desc">Description</label>
                         <br/>
-                        <textarea placeholder="Enter description here..." id="post-desc" name="post-desc"></textarea>
+                        <textarea id="post-desc" name="post-desc" ref={descRef} placeholder="Enter description here..."></textarea>
                     </div>
 
                     <div id="button-div">
