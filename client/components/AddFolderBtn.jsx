@@ -1,16 +1,29 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Form, Modal } from 'react-bootstrap'
+import { v4 as uuidV4 } from 'uuid'
 import { useRef } from 'react'
+import useAuth from '../hooks/useAuth'
 
-export default function AddNewFolder() {
+export default function AddNewFolder({ currentFolder }) {
     const [open, setOpen] = useState(false)
     const nameRef = useRef()
 
-    const createNewFolder = e => {
+    const createNewFolder = async e => {
         e.preventDefault()
+        if (currentFolder == null) return
 
-        // TODO: Create a new folder to be rendered in the Dashboard and saved in the database
+        const { auth } = useAuth()
+
+        // Create a new folder to be rendered in the Dashboard and saved in the database
+        const response = await axios.post('/folder',
+            JSON.stringify({ creator: auth.username, name: nameRef.current.value, parentId: currentFolder.id, _id: uuidV4() }),
+            {
+                headers: { 'Authorization': `Bearer ${auth?.accessToken}`, 'Content-Type': 'application/json' },
+                withCredentials: true
+            }
+        )
+        // Cleanup
         nameRef.current.value = ''
         closeModal()
     }

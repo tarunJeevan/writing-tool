@@ -172,6 +172,11 @@ app.post('/docs', async (req, res) => {
     res.status(200).json({ 'manuscripts': docs })
 })
 
+// Create project folders in database
+app.post('/folder', async (req, res) => {
+    // 
+})
+
 // Handle socket connection for client-side document editor
 io.on('connection', socket => {
     socket.on('get-document', async (documentId, name, creator) => {

@@ -9,10 +9,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    refreshToken: {
-        type: String,
-        // TODO: Add required?
-    }
+    refreshToken: String
 })
 
 export default model('User', userSchema)
