@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react'
 import '../styles/dashboard.css'
 import { useNavigate } from 'react-router-dom'
 import usePopulateDocs from '../hooks/usePopulateDocs'
-import useCreateProject from '../hooks/useCreateProject'
 import AddManuscriptBtn from '../components/AddManuscriptBtn'
 
 export default function Dashboard() {
     const populateDocs = usePopulateDocs()
-
     const [docs, setDocs] = useState([])
 
     useEffect(() => {
@@ -21,8 +19,8 @@ export default function Dashboard() {
     const navigate = useNavigate()
 
     const openManuscript = (manuscript) => {
-        const { id, name, creator } = manuscript
-        navigate(`/documents/${id}`, { state: { 'creator': creator, 'name': name } })
+        const { _id, name, creator } = manuscript
+        navigate(`/documents/${_id}`, { state: { 'creator': creator, 'name': name } })
     }
 
     return (

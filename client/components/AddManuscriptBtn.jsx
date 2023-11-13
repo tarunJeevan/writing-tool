@@ -15,7 +15,7 @@ export default function AddManuscriptBtn({ docs, setDocs }) {
     const createNewManuscript = () => {
         const newProject = {
             name: nameRef.current.value,
-            id: uuidV4(),
+            _id: uuidV4(),
             creator: auth?.username
         }
         // Set the parent component's state to reflect the new manuscript
@@ -29,7 +29,7 @@ export default function AddManuscriptBtn({ docs, setDocs }) {
                 onClick={() => setOpen(true)}
                 title='Create new manuscript'
                 className='create-project-button'>
-                <FontAwesomeIcon icon={faFileCirclePlus} />
+                <FontAwesomeIcon icon={faFileCirclePlus} size='xl' />
             </button>
             {/* <img
                 src="/images/AddProjectIcon.png"
