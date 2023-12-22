@@ -15,7 +15,8 @@
 }
 
 .create-project-button {
-    width: 1.75rem;
+    border: none;
+    background-color: inherit;
 }
 
 .create-project-button:hover {

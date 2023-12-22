@@ -14,29 +14,26 @@ import Logout from './components/Logout'
 export default function App() {
 
     return (
-        <>
-            {/* <Navbar /> */}
-            <Routes>
-                {/* Public routes */}
-                <Route path='/login' element={<Login />} />
-                <Route path='/signup' element={<Signup />} />
+        <Routes>
+            {/* Public routes */}
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
 
-                {/* Protected routes */}
-                <Route element={<PersistLogin />}>
-                    <Route element={<RequireAuth />}>
-                        <Route element={<Navbar />}>
-                            <Route path='/logout' element={<Logout />} />
-                            <Route path='/' element={<Dashboard />} />
-                            <Route path='/settings' element={<Settings />} />
-                            <Route path='/char' element={<CharCreator />} />
-                            <Route path='/documents/:id' element={<TextEditor />} />
-                        </Route>
+            {/* Protected routes */}
+            <Route element={<PersistLogin />}>
+                <Route element={<RequireAuth />}>
+                    <Route element={<Navbar />}>
+                        <Route path='/logout' element={<Logout />} />
+                        <Route path='/' element={<Dashboard />} />
+                        <Route path='/settings' element={<Settings />} />
+                        <Route path='/char' element={<CharCreator />} />
+                        <Route path='/documents/:id' element={<TextEditor />} />
                     </Route>
                 </Route>
+            </Route>
 
-                {/* Error route for wrong URLs */}
-                <Route path='*' element={<Missing />} />
-            </Routes>
-        </>
+            {/* Error route for wrong URLs */}
+            <Route path='*' element={<Missing />} />
+        </Routes>
     )
 }

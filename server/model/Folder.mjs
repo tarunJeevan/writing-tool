@@ -1,15 +1,16 @@
 import { Schema, model } from "mongoose"
 
-const userSchema = new Schema({
-    username: {
+const folderSchema = new Schema({
+    creator: {
         type: String,
         required: true
     },
-    password: {
+    name: {
         type: String,
         required: true
     },
-    refreshToken: String
+    path: [String],
+    parentId: String
 })
 
-export default model('User', userSchema)
+export default model('Folder', folderSchema)
