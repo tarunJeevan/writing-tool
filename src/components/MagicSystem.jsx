@@ -1,0 +1,1 @@
+// Page for the project's magic system. Takes a project ID and renders the page with the associated information, if available, or a blank template.

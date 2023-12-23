@@ -1,0 +1,1 @@
+// Page for story arcs. Takes a project ID and renders the arc editor with the associated information, if available, or a blank template.

@@ -1,0 +1,1 @@
+// Page for manuscripts. Takes a manuscript ID, if available, and renders the manuscript editor with the associated information or a blank template.

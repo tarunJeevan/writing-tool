@@ -1,0 +1,1 @@
+// Page for characters. Takes in a character ID, if available, and renders the page with their information or a blank template.

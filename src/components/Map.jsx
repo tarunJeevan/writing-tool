@@ -1,0 +1,1 @@
+// Page for maps. Takes in a map ID, if available, and renders the map editor with the associated information or a blank template.
