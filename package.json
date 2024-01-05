@@ -9,10 +9,13 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@sanity/vision": "^3.23.4",
         "firebase": "^10.7.1",
         "next": "14.0.4",
+        "next-sanity": "^7.0.6",
         "react": "^18",
-        "react-dom": "^18"
+        "react-dom": "^18",
+        "sanity": "^3.23.4"
     },
     "devDependencies": {
         "autoprefixer": "^10.0.1",
